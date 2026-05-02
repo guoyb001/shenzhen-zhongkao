@@ -421,27 +421,54 @@
     .toast.show { transform: translateX(-50%) translateY(0); }
 
     /* Responsive */
-    @media (max-width: 640px) {
-      .hero h1 { font-size: 36px; }
-      .hero p { font-size: 17px; }
-      .total-score { font-size: 64px; }
-      .total-card { padding: 32px 24px; }
-      .result-card { padding: 28px 24px; }
-      .score-table-header { padding: 12px 16px; font-size: 11px; }
-      .score-table-row { padding: 12px 16px; }
-      .score-table-header > div:nth-child(2),
-      .score-table-row .max-score { display: none; }
-      .score-input { width: 80px; font-size: 18px; padding: 10px 8px; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 42px; }
+      .hero p { font-size: 18px; }
+      .total-score { font-size: 72px; }
+      .total-card { padding: 36px 24px; }
+
+      /* 表头：小屏幕隐藏考试方式，保留科目、满分、分数三列 */
+      .score-table-header > div:nth-child(3) { display: none; }
+      .score-table-header { padding: 14px 16px; font-size: 13px; }
+      .score-table-row { padding: 16px; }
+      .score-table-row > *:nth-child(3) { display: none; }
+
+      .score-input {
+        width: 90px;
+        font-size: 22px;
+        padding: 12px 8px;
+      }
       .input-max { display: none; }
-      .note-table { grid-template-columns: 1fr; }
-      .schools-grid { grid-template-columns: 1fr 1fr; }
+
+      .schools-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .save-card { flex-direction: column; align-items: flex-start; }
       .btn-group { width: 100%; }
       .btn-secondary, .btn-primary { flex: 1; text-align: center; }
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .hero { padding: 60px 16px 40px; }
+      .total-score { font-size: 56px; }
+      .total-card { padding: 28px 20px; }
+      .predict-btn { padding: 14px 36px; font-size: 16px; }
+
+      .score-table-header { padding: 12px; font-size: 12px; }
+      .score-table-row { padding: 14px 12px; }
+      .subject-name { font-size: 17px; }
+      .subject-detail { font-size: 12px; }
+      .score-input { width: 76px; font-size: 20px; padding: 10px 6px; }
+
       .schools-grid { grid-template-columns: 1fr; }
+      .result-card { padding: 24px 20px; }
+    }
+
+    @media (max-width: 360px) {
+      .hero h1 { font-size: 26px; }
+      .score-table-header > div:nth-child(2) { display: none; }
+      .score-table-row > *:nth-child(2) { display: none; }
+      .score-input { width: 64px; font-size: 18px; }
     }
   </style>
 </head>
