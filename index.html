@@ -155,42 +155,53 @@
 
     .score-table-header {
       display: flex;
-      padding: 16px 24px;
+      padding: 0 20px;
       background: #f5f5f7;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      gap: 0;
+      letter-spacing: 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    .score-table-header > div { flex: 1; }
-    .score-table-header > div:first-child { text-align: left; flex: 2.5; }
-    .score-table-header > div:nth-child(2) { text-align: center; }
-    .score-table-header > div:nth-child(3) { text-align: center; }
-    .score-table-header > div:last-child { text-align: right; flex: 1.5; justify-content: flex-end; }
+    .score-table-header > div { 
+      padding: 14px 8px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    .score-table-header > div:nth-child(1) { flex: 3; justify-content: flex-start; }
+    .score-table-header > div:nth-child(2) { flex: 1; justify-content: center; }
+    .score-table-header > div:nth-child(3) { flex: 1.8; justify-content: flex-end; }
 
     .score-table-row {
       display: flex;
-      padding: 14px 20px;
+      padding: 0 20px;
       border-top: 1px solid #f0f0f5;
       align-items: center;
-      gap: 0;
       transition: background 0.2s;
     }
 
-    .score-table-row > * { flex: 1; }
-    .score-table-row > *:first-child { text-align: left; flex: 2; }
-    .score-table-row > *:nth-child(2) { text-align: center; }
-    .score-table-row > *:nth-child(3) { text-align: center; }
-    .score-table-row > *:last-child { text-align: right; flex: 1.8; justify-content: flex-end; }
+    .score-table-row > * { 
+      padding: 14px 8px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    .score-table-row > *:nth-child(1) { flex: 3; justify-content: flex-start; }
+    .score-table-row > *:nth-child(2) { flex: 1; justify-content: center; }
+    .score-table-row > *:last-child { flex: 1.8; justify-content: flex-end; }
 
     .score-table-row:hover { background: #fafafa; }
 
-    .subject-info { display: flex; flex-direction: column; gap: 3px; }
-    .subject-name { font-size: 20px; font-weight: 600; }
-    .subject-detail { font-size: 14px; color: var(--text-secondary); }
+    .subject-info { 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center;
+      gap: 2px;
+    }
+    .subject-name { font-size: 18px; font-weight: 600; }
+    .subject-detail { font-size: 13px; color: var(--text-secondary); }
 
     .max-score {
       font-size: 14px;
@@ -212,31 +223,54 @@
     .badge-ope { background: #ff9500; }
     .badge-pe { background: #34c759; }
 
-    .input-cell { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+    .input-cell { 
+      display: flex; 
+      align-items: center; 
+      gap: 0;
+      justify-content: flex-end;
+    }
+
+    .score-input-wrap {
+      display: flex;
+      align-items: center;
+      background: #f5f5f7;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+
+    .score-input-wrap:focus-within {
+      border-color: var(--accent);
+      background: white;
+    }
 
     .score-input {
-      width: 110px;
-      padding: 14px 12px;
-      font-size: 24px;
+      width: 80px;
+      padding: 12px 10px;
+      font-size: 20px;
       font-weight: 600;
-      border: 2px solid var(--border);
-      border-radius: 10px;
+      border: none;
       outline: none;
       text-align: center;
       font-family: inherit;
       color: var(--text-primary);
-      transition: border-color 0.2s;
+      background: transparent;
+    }
+
+    .score-input::placeholder { color: #c7c7cc; font-weight: 400; }
+
+    .score-input-wrap .input-max {
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding-right: 10px;
+      background: transparent;
+      white-space: nowrap;
     }
 
     .score-input:focus { border-color: var(--accent); }
     .score-input::placeholder { color: #c7c7cc; font-weight: 400; }
     .score-input.over { border-color: var(--tier4); background: #fff5f5; }
-
-    .input-max {
-      font-size: 14px;
-      color: var(--text-secondary);
-      white-space: nowrap;
-    }
 
     /* Note */
     .table-note {
@@ -433,12 +467,15 @@
       .score-table-row { padding: 16px; }
       .score-table-row > *:nth-child(3) { display: none; }
 
+      .score-input-wrap {
+        width: 90px;
+      }
       .score-input {
         width: 90px;
         font-size: 22px;
         padding: 12px 8px;
       }
-      .input-max { display: none; }
+      .score-input-wrap .input-max { display: none; }
 
       .schools-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .save-card { flex-direction: column; align-items: flex-start; }
@@ -458,6 +495,7 @@
       .score-table-row { padding: 14px 12px; }
       .subject-name { font-size: 17px; }
       .subject-detail { font-size: 12px; }
+      .score-input-wrap { width: 76px; }
       .score-input { width: 76px; font-size: 20px; padding: 10px 6px; }
 
       .schools-grid { grid-template-columns: 1fr; }
@@ -468,6 +506,7 @@
       .hero h1 { font-size: 26px; }
       .score-table-header > div:nth-child(2) { display: none; }
       .score-table-row > *:nth-child(2) { display: none; }
+      .score-input-wrap { width: 64px; }
       .score-input { width: 64px; font-size: 18px; }
     }
   </style>
@@ -515,8 +554,10 @@
       <div class="max-score">120分</div>
       <div><span class="type-badge badge-written">笔试闭卷</span></div>
       <div class="input-cell">
-        <input type="number" id="chinese" min="0" max="120" placeholder="—" oninput="calcTotal(this, 120)">
-        <span class="input-max">/120</span>
+        <div class="score-input-wrap">
+          <input type="number" id="chinese" value="108" min="0" max="120" placeholder="—" oninput="calcTotal(this, 120)">
+          <span class="input-max">/120</span>
+        </div>
       </div>
     </div>
 
@@ -529,8 +570,10 @@
       <div class="max-score">100分</div>
       <div><span class="type-badge badge-written">笔试闭卷</span></div>
       <div class="input-cell">
-        <input type="number" id="math" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
-        <span class="input-max">/100</span>
+        <div class="score-input-wrap">
+          <input type="number" id="math" value="90" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
+          <span class="input-max">/100</span>
+        </div>
       </div>
     </div>
 
@@ -543,8 +586,10 @@
       <div class="max-score">100分</div>
       <div><span class="type-badge badge-written">笔试+听说</span></div>
       <div class="input-cell">
-        <input type="number" id="english" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
-        <span class="input-max">/100</span>
+        <div class="score-input-wrap">
+          <input type="number" id="english" value="90" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
+          <span class="input-max">/100</span>
+        </div>
       </div>
     </div>
 
@@ -557,8 +602,10 @@
       <div class="max-score">70分</div>
       <div><span class="type-badge badge-written">笔试合场分卷</span></div>
       <div class="input-cell">
-        <input type="number" id="physics" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
-        <span class="input-max">/70</span>
+        <div class="score-input-wrap">
+          <input type="number" id="physics" value="63" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
+          <span class="input-max">/70</span>
+        </div>
       </div>
     </div>
 
@@ -571,8 +618,10 @@
       <div class="max-score">50分</div>
       <div><span class="type-badge badge-written">笔试合场分卷</span></div>
       <div class="input-cell">
-        <input type="number" id="chemistry" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
-        <span class="input-max">/50</span>
+        <div class="score-input-wrap">
+          <input type="number" id="chemistry" value="45" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
+          <span class="input-max">/50</span>
+        </div>
       </div>
     </div>
 
@@ -585,8 +634,10 @@
       <div class="max-score">70分</div>
       <div><span class="type-badge badge-written">笔试闭卷</span></div>
       <div class="input-cell">
-        <input type="number" id="history" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
-        <span class="input-max">/70</span>
+        <div class="score-input-wrap">
+          <input type="number" id="history" value="63" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
+          <span class="input-max">/70</span>
+        </div>
       </div>
     </div>
 
@@ -599,8 +650,10 @@
       <div class="max-score">50分</div>
       <div><span class="type-badge badge-written">笔试开卷</span></div>
       <div class="input-cell">
-        <input type="number" id="politics" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
-        <span class="input-max">/50</span>
+        <div class="score-input-wrap">
+          <input type="number" id="politics" value="45" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
+          <span class="input-max">/50</span>
+        </div>
       </div>
     </div>
 
@@ -613,8 +666,10 @@
       <div class="max-score">10分</div>
       <div><span class="type-badge badge-ope">实验操作</span></div>
       <div class="input-cell">
-        <input type="number" id="phy_exp" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
-        <span class="input-max">/10</span>
+        <div class="score-input-wrap">
+          <input type="number" id="phy_exp" value="9" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
+          <span class="input-max">/10</span>
+        </div>
       </div>
     </div>
 
@@ -627,8 +682,10 @@
       <div class="max-score">10分</div>
       <div><span class="type-badge badge-ope">实验操作</span></div>
       <div class="input-cell">
-        <input type="number" id="chem_exp" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
-        <span class="input-max">/10</span>
+        <div class="score-input-wrap">
+          <input type="number" id="chem_exp" value="9" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
+          <span class="input-max">/10</span>
+        </div>
       </div>
     </div>
 
@@ -641,8 +698,10 @@
       <div class="max-score">50分</div>
       <div><span class="type-badge badge-pe">实践考核</span></div>
       <div class="input-cell">
-        <input type="number" id="pe" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
-        <span class="input-max">/50</span>
+        <div class="score-input-wrap">
+          <input type="number" id="pe" value="45" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
+          <span class="input-max">/50</span>
+        </div>
       </div>
     </div>
 
@@ -921,7 +980,14 @@ function showToast(msg) {
 }
 
 // 页面加载时自动加载
-window.onload = function() { loadScores(); };
+window.onload = function() { 
+      loadScores(); 
+      // 初始化总分显示
+      CULTURE_FIELDS.forEach(function(f) {
+        var el = document.getElementById(f.id);
+        if (el && el.value) calcTotal(el, f.max);
+      });
+    };
 </script>
 
 </body>
