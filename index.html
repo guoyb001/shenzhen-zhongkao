@@ -238,6 +238,7 @@
       border-radius: 10px;
       overflow: hidden;
       transition: all 0.2s;
+      pointer-events: auto;
     }
 
     .score-input-wrap:focus-within {
@@ -246,8 +247,8 @@
     }
 
     .score-input {
-      width: 80px;
-      padding: 12px 10px;
+      width: 72px;
+      padding: 12px 4px;
       font-size: 20px;
       font-weight: 600;
       border: none;
@@ -256,6 +257,9 @@
       font-family: inherit;
       color: var(--text-primary);
       background: transparent;
+      appearance: none;
+      -webkit-appearance: none;
+      pointer-events: auto;
     }
 
     .score-input::placeholder { color: #c7c7cc; font-weight: 400; }
@@ -263,9 +267,10 @@
     .score-input-wrap .input-max {
       font-size: 13px;
       color: var(--text-secondary);
-      padding-right: 10px;
+      padding-right: 8px;
       background: transparent;
       white-space: nowrap;
+      pointer-events: none;
     }
 
     .score-input:focus { border-color: var(--accent); }
