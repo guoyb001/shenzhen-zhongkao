@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深圳中考分数线预测</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #fafafa;
+      --card-bg: #ffffff;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --border: #d2d2d7;
+      --tier1: #34c759;
+      --tier2: #007aff;
+      --tier3: #ff9500;
+      --tier4: #ff3b30;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(180deg, #f0f0f5 0%, #fafafa 100%);
+      padding: 80px 20px 60px;
+      text-align: center;
+    }
+
+    .hero .year-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 21px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .policy-ref {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      background: #f0f0f5;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    /* Total */
+    .total-section {
+      max-width: 720px;
+      margin: -40px auto 48px;
+      padding: 0 20px;
+    }
+
+    .total-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 48px;
+      text-align: center;
+    }
+
+    .total-label {
+      font-size: 15px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .total-score {
+      font-size: 96px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .total-score .unit { font-size: 32px; font-weight: 500; color: var(--text-secondary); }
+
+    .total-max { font-size: 17px; color: var(--text-secondary); margin-top: 8px; }
+
+    .score-bar-wrap { margin-top: 16px; background: #e5e5ea; border-radius: 4px; height: 6px; overflow: hidden; }
+    .score-bar { height: 100%; border-radius: 4px; background: var(--accent); transition: width 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); }
+    .score-bar.tier1 { background: var(--tier1); }
+    .score-bar.tier2 { background: var(--tier2); }
+    .score-bar.tier3 { background: var(--tier3); }
+    .score-bar.tier4 { background: var(--tier4); }
+
+    .predict-btn {
+      margin-top: 32px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 16px 48px;
+      font-size: 17px;
+      font-weight: 500;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: -0.01em;
+    }
+
+    .predict-btn:hover { background: var(--accent-hover); transform: scale(1.02); }
+    .predict-btn:active { transform: scale(0.98); }
+
+    /* Score Table */
+    .score-table {
+      max-width: 900px;
+      margin: 0 auto 48px;
+      padding: 0 20px;
+    }
+
+    .score-table-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .score-table-header {
+      display: flex;
+      padding: 14px 20px;
+      background: #f5f5f7;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      gap: 0;
+    }
+
+    .score-table-header > div { flex: 1; }
+    .score-table-header > div:first-child { text-align: left; flex: 2; }
+    .score-table-header > div:nth-child(2) { text-align: center; }
+    .score-table-header > div:nth-child(3) { text-align: center; }
+    .score-table-header > div:last-child { text-align: right; }
+
+    .score-table-row {
+      display: flex;
+      padding: 14px 20px;
+      border-top: 1px solid #f0f0f5;
+      align-items: center;
+      gap: 0;
+      transition: background 0.2s;
+    }
+
+    .score-table-row > * { flex: 1; }
+    .score-table-row > *:first-child { text-align: left; flex: 2; }
+    .score-table-row > *:nth-child(2) { text-align: center; }
+    .score-table-row > *:nth-child(3) { text-align: center; }
+    .score-table-row > *:last-child { text-align: right; flex: 1.8; justify-content: flex-end; }
+
+    .score-table-row:hover { background: #fafafa; }
+
+    .subject-info { display: flex; flex-direction: column; gap: 3px; }
+    .subject-name { font-size: 16px; font-weight: 600; }
+    .subject-detail { font-size: 12px; color: var(--text-secondary); }
+
+    .max-score {
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .type-badge {
+      font-size: 11px;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .badge-written { background: #007aff; }
+    .badge-ope { background: #ff9500; }
+    .badge-pe { background: #34c759; }
+
+    .input-cell { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+
+    .score-input {
+      width: 96px;
+      padding: 12px 10px;
+      font-size: 20px;
+      font-weight: 600;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      text-align: center;
+      font-family: inherit;
+      color: var(--text-primary);
+      transition: border-color 0.2s;
+    }
+
+    .score-input:focus { border-color: var(--accent); }
+    .score-input::placeholder { color: #c7c7cc; font-weight: 400; }
+    .score-input.over { border-color: var(--tier4); background: #fff5f5; }
+
+    .input-max {
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    /* Note */
+    .table-note {
+      max-width: 900px;
+      margin: 0 auto 16px;
+      padding: 0 20px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .table-note .note-card { flex: 1; min-width: 0; }
+
+    .note-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px 24px;
+    }
+
+    .note-card h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+
+    .note-card p, .note-card li {
+      font-size: 14px;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    .note-card ul { padding-left: 18px; }
+
+    /* Result */
+    .result-section {
+      max-width: 900px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+      display: none;
+    }
+
+    .result-section.show { display: block; animation: fadeIn 0.6s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px 48px;
+    }
+
+    .result-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .result-tier-badge {
+      padding: 10px 24px;
+      border-radius: 24px;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .tier-1 { background: var(--tier1); }
+    .tier-2 { background: var(--tier2); }
+    .tier-3 { background: var(--tier3); }
+    .tier-4 { background: var(--tier4); }
+
+    .result-title { font-size: 24px; font-weight: 600; }
+    .result-desc { font-size: 15px; color: var(--text-secondary); margin-top: 4px; }
+
+    .schools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .school-item {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .school-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .school-note { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+
+    .schools-note {
+      margin-top: 24px;
+      padding: 16px;
+      background: #f5f5f7;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Save */
+    .save-section {
+      max-width: 720px;
+      margin: 0 auto 80px;
+      padding: 0 20px;
+    }
+
+    .save-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .save-info h3 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+    .save-info p { font-size: 14px; color: var(--text-secondary); }
+    .save-info .last-saved { font-size: 13px; color: var(--tier1); margin-top: 6px; }
+
+    .btn-group { display: flex; gap: 12px; }
+
+    .btn-secondary {
+      background: #f5f5f7;
+      color: var(--text-primary);
+      border: none;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover { background: #e8e8ed; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    /* Footer */
+    .footer { text-align: center; padding: 40px 20px; font-size: 13px; color: var(--text-secondary); }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1d1d1f;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 24px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 36px; }
+      .hero p { font-size: 17px; }
+      .total-score { font-size: 64px; }
+      .total-card { padding: 32px 24px; }
+      .result-card { padding: 28px 24px; }
+      .score-table-header { padding: 12px 16px; font-size: 11px; }
+      .score-table-row { padding: 12px 16px; }
+      .score-table-header > div:nth-child(2),
+      .score-table-row .max-score { display: none; }
+      .score-input { width: 80px; font-size: 18px; padding: 10px 8px; }
+      .input-max { display: none; }
+      .note-table { grid-template-columns: 1fr; }
+      .schools-grid { grid-template-columns: 1fr 1fr; }
+      .save-card { flex-direction: column; align-items: flex-start; }
+      .btn-group { width: 100%; }
+      .btn-secondary, .btn-primary { flex: 1; text-align: center; }
+    }
+
+    @media (max-width: 400px) {
+      .schools-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="year-badge">2026年 · 深圳</div>
+  <h1>深圳中考分数线预测</h1>
+  <p>输入各科成绩，查看可报考的深圳高中</p>
+  <div class="policy-ref">政策依据：深教规〔2024〕3号</div>
+</section>
+
+<!-- Total -->
+<div class="total-section">
+  <div class="total-card">
+    <div class="total-label">中考总分</div>
+    <div class="total-score" id="totalScore">0<span class="unit">分</span></div>
+    <div class="total-max">满分 630 分</div>
+    <div class="score-bar-wrap">
+      <div class="score-bar" id="scoreBar" style="width:0%"></div>
+    </div>
+    <button class="predict-btn" onclick="predictSchool()">预测我的高中</button>
+  </div>
+</div>
+
+<!-- Score Table -->
+<div class="score-table">
+  <div class="score-table-card">
+
+    <div class="score-table-header">
+      <div>考试科目</div>
+      <div>满分</div>
+      <div>考试方式</div>
+      <div>我的分数</div>
+    </div>
+
+    <!-- 计分科目一：语文 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">语文</div>
+        <div class="subject-detail">闭卷笔试 · 120分钟</div>
+      </div>
+      <div class="max-score">120分</div>
+      <div><span class="type-badge badge-written">笔试闭卷</span></div>
+      <div class="input-cell">
+        <input type="number" id="chinese" min="0" max="120" placeholder="—" oninput="calcTotal(this, 120)">
+        <span class="input-max">/120</span>
+      </div>
+    </div>
+
+    <!-- 计分科目二：数学 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">数学</div>
+        <div class="subject-detail">闭卷笔试 · 90分钟</div>
+      </div>
+      <div class="max-score">100分</div>
+      <div><span class="type-badge badge-written">笔试闭卷</span></div>
+      <div class="input-cell">
+        <input type="number" id="math" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
+        <span class="input-max">/100</span>
+      </div>
+    </div>
+
+    <!-- 计分科目三：外语 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">外语</div>
+        <div class="subject-detail">笔试75分 + 听说25分</div>
+      </div>
+      <div class="max-score">100分</div>
+      <div><span class="type-badge badge-written">笔试+听说</span></div>
+      <div class="input-cell">
+        <input type="number" id="english" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
+        <span class="input-max">/100</span>
+      </div>
+    </div>
+
+    <!-- 计分科目四：物理 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">物理</div>
+        <div class="subject-detail">合场分卷笔试（与化学）· 60分钟</div>
+      </div>
+      <div class="max-score">70分</div>
+      <div><span class="type-badge badge-written">笔试合场分卷</span></div>
+      <div class="input-cell">
+        <input type="number" id="physics" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
+        <span class="input-max">/70</span>
+      </div>
+    </div>
+
+    <!-- 计分科目五：化学 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">化学</div>
+        <div class="subject-detail">合场分卷笔试（与物理）· 50分钟</div>
+      </div>
+      <div class="max-score">50分</div>
+      <div><span class="type-badge badge-written">笔试合场分卷</span></div>
+      <div class="input-cell">
+        <input type="number" id="chemistry" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
+        <span class="input-max">/50</span>
+      </div>
+    </div>
+
+    <!-- 计分科目六：历史 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">历史</div>
+        <div class="subject-detail">闭卷笔试 · 60分钟</div>
+      </div>
+      <div class="max-score">70分</div>
+      <div><span class="type-badge badge-written">笔试闭卷</span></div>
+      <div class="input-cell">
+        <input type="number" id="history" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
+        <span class="input-max">/70</span>
+      </div>
+    </div>
+
+    <!-- 计分科目七：道德与法治 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">道德与法治</div>
+        <div class="subject-detail">开卷笔试 · 50分钟（可带教科书）</div>
+      </div>
+      <div class="max-score">50分</div>
+      <div><span class="type-badge badge-written">笔试开卷</span></div>
+      <div class="input-cell">
+        <input type="number" id="politics" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
+        <span class="input-max">/50</span>
+      </div>
+    </div>
+
+    <!-- 计分科目八：物理实验操作 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">物理实验操作</div>
+        <div class="subject-detail">现场实操 · 独立计分</div>
+      </div>
+      <div class="max-score">10分</div>
+      <div><span class="type-badge badge-ope">实验操作</span></div>
+      <div class="input-cell">
+        <input type="number" id="phy_exp" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
+        <span class="input-max">/10</span>
+      </div>
+    </div>
+
+    <!-- 计分科目九：化学实验操作 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">化学实验操作</div>
+        <div class="subject-detail">现场实操 · 独立计分</div>
+      </div>
+      <div class="max-score">10分</div>
+      <div><span class="type-badge badge-ope">实验操作</span></div>
+      <div class="input-cell">
+        <input type="number" id="chem_exp" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
+        <span class="input-max">/10</span>
+      </div>
+    </div>
+
+    <!-- 计分科目十：体育 -->
+    <div class="score-table-row">
+      <div class="subject-info">
+        <div class="subject-name">体育与健康</div>
+        <div class="subject-detail">过程性评价14分 + 现场考核36分</div>
+      </div>
+      <div class="max-score">50分</div>
+      <div><span class="type-badge badge-pe">实践考核</span></div>
+      <div class="input-cell">
+        <input type="number" id="pe" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
+        <span class="input-max">/50</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Notes -->
+<div class="table-note">
+  <div class="note-card">
+    <h4>📌 计分说明</h4>
+    <ul>
+      <li>中考满分 <strong>630分</strong>，以上10科均计入录取总分</li>
+      <li>物理+化学合场分卷，但各科单独计分</li>
+      <li>理化实验操作满分20分（各10分），<strong>单独计分</strong></li>
+      <li>体育过程性评价由学校评定，含体质健康、体育课参与等</li>
+    </ul>
+  </div>
+  <div class="note-card">
+    <h4>📎 录取参考科目（不计入630分）</h4>
+    <ul>
+      <li><strong>地理、生物</strong>：八年级下学期考试，成绩不计入总分</li>
+      <li><strong>信息科技、艺术</strong>：合格/待合格，缺考则不能投档</li>
+      <li>以上四科在<strong>同分时</strong>作为排位参考</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Result -->
+<div class="result-section" id="resultSection">
+  <div class="result-card">
+    <div class="result-header">
+      <div class="result-tier-badge" id="resultBadge">—</div>
+      <div>
+        <div class="result-title" id="resultTitle">—</div>
+        <div class="result-desc" id="resultDesc">—</div>
+      </div>
+    </div>
+    <div class="schools-grid" id="schoolsGrid"></div>
+    <div class="schools-note" id="schoolsNote"></div>
+  </div>
+</div>
+
+<!-- Save -->
+<div class="save-section">
+  <div class="save-card">
+    <div class="save-info">
+      <h3>保存成绩</h3>
+      <p>将当前分数保存到本地，随时可加载</p>
+      <div class="last-saved" id="lastSaved"></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn-secondary" onclick="loadScores()">加载上次</button>
+      <button class="btn-primary" onclick="saveScores()">保存成绩</button>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>本工具仅供参考。2026年实际录取分数线以深圳市招生办官方发布为准</p>
+  <p style="margin-top:6px">政策来源：深教规〔2024〕3号 / 深教〔2026〕34号</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─────────────────────────────────────────────
+// 深圳中考志愿预测 - 2026版
+// ─────────────────────────────────────────────
+
+// 文化课字段（不含理化实验操作20分）
+const CULTURE_FIELDS = [
+  { id: 'chinese',   max: 120 },
+  { id: 'math',      max: 100 },
+  { id: 'english',   max: 100 },
+  { id: 'physics',   max: 70  },
+  { id: 'chemistry', max: 50  },
+  { id: 'history',   max: 70  },
+  { id: 'politics',  max: 50  },
+  { id: 'pe',        max: 50  },
+];
+
+// 所有学校数据（按2025年AC类录取分数从高到低）
+const allSchools = [
+  // ─── 四大名校 ───────────────────────────────────────────────
+  { name: '深圳中学', tier: 1, score2025: 574, score2024: 567 },
+  { name: '深圳实验学校（高中部）', tier: 1, score2025: 570, score2024: 567 },
+  { name: '深圳市高级中学（中心校区）', tier: 1, score2025: 569, score2024: 565 },
+  { name: '深圳外国语学校', tier: 1, score2025: 568, score2024: 565 },
+  // ─── 八大家 ───────────────────────────────────────────────
+  { name: '红岭中学', tier: 2, score2025: 565, score2024: 560 },
+  { name: '宝安中学（集团）高中部', tier: 2, score2025: 564, score2024: 559 },
+  { name: '育才中学', tier: 2, score2025: 564, score2024: 559 },
+  { name: '深圳科学高中', tier: 2, score2025: 560, score2024: 553 },
+  { name: '南方科技大学附属中学', tier: 2, score2025: 556, score2024: 547 },
+  { name: '深圳大学附属中学', tier: 2, score2025: 554, score2024: 558 },
+  { name: '南山外国语学校', tier: 2, score2025: 549, score2024: 550 },
+  { name: '深圳第二高级中学', tier: 2, score2025: 548, score2024: 539 },
+  // ─── 优质普高（500-545分区间）──────────────────────────────
+  { name: '翠园中学', tier: 3, score2025: 545, score2024: 549 },
+  { name: '中科附高（深理工附中）', tier: 3, score2025: 542, score2024: 530 },
+  { name: '人大附中深圳学校', tier: 3, score2025: 542, score2024: 537 },
+  { name: '华侨城中学', tier: 3, score2025: 540, score2024: 543 },
+  { name: '深圳第三高级中学', tier: 3, score2025: 535, score2024: 535 },
+  { name: '平冈中学', tier: 3, score2025: 530, score2024: 530 },
+  { name: '深圳外国语学校高中园', tier: 3, score2025: 530, score2024: null },
+  { name: '深圳市第一职业技术学校', tier: 3, score2025: 512, score2024: null },
+  { name: '深圳市第二职业技术学校', tier: 3, score2025: 507, score2024: null },
+  // ─── 普通高中（450-510分区间）─────────────────────────────
+  { name: '光明高级中学', tier: 4, score2025: 521, score2024: null },
+  { name: '坪山高级中学', tier: 4, score2025: 515, score2024: null },
+  { name: '光明中学', tier: 4, score2025: 517, score2024: null },
+  { name: '福田中学', tier: 4, score2025: 516, score2024: null },
+  { name: '罗湖高级中学', tier: 4, score2025: 514, score2024: null },
+  { name: '梅林中学', tier: 4, score2025: 512, score2024: null },
+  { name: '龙华中学', tier: 4, score2025: 508, score2024: null },
+  { name: '沙井中学', tier: 4, score2025: 508, score2024: null },
+  { name: '石岩公学（公办班）', tier: 4, score2025: 504, score2024: null },
+  { name: '观澜中学', tier: 4, score2025: 503, score2024: null },
+  { name: '松岗中学', tier: 4, score2025: 503, score2024: null },
+  { name: '横岗高级中学', tier: 4, score2025: 503, score2024: null },
+  { name: '盐田高级中学', tier: 4, score2025: 507, score2024: null },
+  { name: '深圳市美术学校', tier: 4, score2025: 459, score2024: null },
+  { name: '布吉中学（走读）', tier: 4, score2025: 462, score2024: 478 },
+];
+
+// 计算总分（仅文化课）
+function calcTotal(el, max) {
+  let val = parseFloat(el.value) || 0;
+  if (val > max) {
+    val = max;
+    el.value = max;
+    el.classList.add('over');
+  } else {
+    el.classList.remove('over');
+  }
+
+  const CULTURE_MAX = 610;
+  let total = 0;
+  CULTURE_FIELDS.forEach(function(f) {
+    total += Math.min(parseFloat(document.getElementById(f.id).value) || 0, f.max);
+  });
+
+  const display = total > 0 ? total : '—';
+  document.getElementById('totalScore').innerHTML = display + '<span class="unit">分</span>';
+
+  const pct = Math.min((total / CULTURE_MAX) * 100, 100);
+  const bar = document.getElementById('scoreBar');
+  bar.style.width = pct + '%';
+  bar.className = 'score-bar';
+  if (total >= 555) bar.classList.add('tier1');
+  else if (total >= 545) bar.classList.add('tier2');
+  else if (total >= 480) bar.classList.add('tier3');
+  else if (total >= 420) bar.classList.add('tier4');
+
+  document.getElementById('resultSection').classList.remove('show');
+}
+
+// 预测学校
+function predictSchool() {
+  let cultureScore = 0;
+  CULTURE_FIELDS.forEach(function(f) {
+    cultureScore += Math.min(parseFloat(document.getElementById(f.id).value) || 0, f.max);
+  });
+
+  if (cultureScore === 0) {
+    showToast('请先输入各科分数');
+    return;
+  }
+
+  // 只显示与文化课总分差值在±5分以内的学校
+  const matched = allSchools
+    .filter(function(s) { return s.score2025 !== null && Math.abs(cultureScore - s.score2025) <= 5; })
+    .map(function(s) {
+      const diff = cultureScore - s.score2025;
+      let status;
+      if (diff >= 0) status = '稳';
+      else status = '冲';
+      return { name: s.name, tier: s.tier, score2025: s.score2025, score2024: s.score2024, diff: diff, status: status };
+    });
+
+  // 稳：按2025年分数降序；冲：按2025年分数降序（高分在前，差值越小）
+  const chong = matched.filter(function(s) { return s.status === '冲'; })
+    .sort(function(a, b) { return b.score2025 - a.score2025; });
+  const wen = matched.filter(function(s) { return s.status === '稳'; })
+    .sort(function(a, b) { return b.score2025 - a.score2025; });
+
+  const resultSection = document.getElementById('resultSection');
+  const badge = document.getElementById('resultBadge');
+  const title = document.getElementById('resultTitle');
+  const desc = document.getElementById('resultDesc');
+  const grid = document.getElementById('schoolsGrid');
+  const note = document.getElementById('schoolsNote');
+
+  const topTier = matched.length > 0 ? Math.min.apply(null, matched.map(function(s) { return s.tier; })) : 4;
+  const tierColors = { 1: 'tier-1', 2: 'tier-2', 3: 'tier-3', 4: 'tier-4' };
+  const tierLabels = { 1: '四大名校', 2: '八大家', 3: '优质普高', 4: '普通高中' };
+  badge.textContent = (tierLabels[topTier] || '') + '  ' + cultureScore + ' 分';
+  badge.className = 'result-tier-badge ' + (tierColors[topTier] || 'tier-4');
+  title.textContent = '近两年录取分数线对比（AC类）';
+  desc.textContent = '稳：≥录取线（必中）  冲：<录取线（可冲）';
+
+  var html = '';
+
+  function renderGroup(label, color, schools) {
+    if (schools.length === 0) return;
+    html += '<div style="margin-bottom:20px">';
+    html += '<div style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em">' + label + '</div>';
+    html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">';
+    schools.forEach(function(s) {
+      var change = s.score2024 ? (s.score2025 - s.score2024 > 0 ? '+' + (s.score2025 - s.score2024) : s.score2025 - s.score2024) : '新增';
+      var changeColor = s.score2024 ? (s.score2025 - s.score2024 > 0 ? '#34c759' : '#ff3b30') : '#86868b';
+      html += '<div style="padding:14px 16px;background:#fafafa;border-radius:10px;border-left:4px solid ' + color + '">';
+      html += '<div style="font-size:15px;font-weight:600;margin-bottom:4px">' + s.name + '</div>';
+      html += '<div style="font-size:13px;color:var(--text-secondary)">';
+      html += '2025 <strong style="color:var(--text-primary)">' + s.score2025 + '</strong>分';
+      if (s.score2024) {
+        html += ' &nbsp;|&nbsp; 2024 <strong style="color:var(--text-primary)">' + s.score2024 + '</strong>分';
+      }
+      html += ' &nbsp;<span style="color:' + changeColor + ';font-weight:600">' + change + '</span>';
+      html += '</div></div>';
+    });
+    html += '</div></div>';
+  }
+
+  renderGroup('冲', '#ff9500', chong);
+  
+  renderGroup('稳', '#34c759', wen);
+
+  if (html === '') {
+    html = '<div style="text-align:center;padding:40px;color:var(--text-secondary)">';
+    html += '<div style="font-size:15px">暂无匹配学校</div>';
+    html += '<div style="font-size:13px;margin-top:8px">建议关注补录或中职志愿</div>';
+    html += '</div>';
+  }
+
+  grid.innerHTML = html;
+  note.textContent = '以上数据为2025年AC类住宿生录取分数线，供参考。2026年分数线以深圳市招生办发布为准。';
+
+  resultSection.classList.add('show');
+  resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// 保存成绩
+function saveScores() {
+  var ALL_IDS = ['chinese','math','english','physics','chemistry','history','politics','phy_exp','chem_exp','pe'];
+  var data = {};
+  ALL_IDS.forEach(function(id) { data[id] = document.getElementById(id).value; });
+  data.savedAt = new Date().toLocaleString('zh-CN');
+  localStorage.setItem('sz_zhongkao_2026', JSON.stringify(data));
+  showToast('成绩已保存 ✓');
+}
+
+// 加载成绩
+function loadScores() {
+  var raw = localStorage.getItem('sz_zhongkao_2026');
+  if (!raw) { showToast('没有找到已保存的成绩'); return; }
+  var data = JSON.parse(raw);
+  var ALL_IDS = ['chinese','math','english','physics','chemistry','history','politics','phy_exp','chem_exp','pe'];
+  var ALL_MAXES = [120, 100, 100, 70, 50, 70, 50, 10, 10, 50];
+  ALL_IDS.forEach(function(id, i) {
+    if (data[id] !== undefined && data[id] !== '') {
+      document.getElementById(id).value = data[id];
+      calcTotal(document.getElementById(id), ALL_MAXES[i]);
+    }
+  });
+  if (data.savedAt) document.getElementById('lastSaved').textContent = '上次保存：' + data.savedAt;
+  showToast('成绩已加载 ✓');
+}
+
+// Toast提示
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 2500);
+}
+
+// 页面加载时自动加载
+window.onload = function() { loadScores(); };
+</script>
+
+</body>
+</html>
