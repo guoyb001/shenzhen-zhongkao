@@ -52,21 +52,22 @@
     }
 
     .hero h1 {
-      font-size: 56px;
+      font-size: 68px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero p {
-      font-size: 21px;
+      font-size: 26px;
       color: var(--text-secondary);
       font-weight: 400;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
+      line-height: 1.6;
     }
 
     .policy-ref {
@@ -154,9 +155,9 @@
 
     .score-table-header {
       display: flex;
-      padding: 14px 20px;
+      padding: 16px 24px;
       background: #f5f5f7;
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-secondary);
       text-transform: uppercase;
@@ -165,10 +166,10 @@
     }
 
     .score-table-header > div { flex: 1; }
-    .score-table-header > div:first-child { text-align: left; flex: 2; }
+    .score-table-header > div:first-child { text-align: left; flex: 2.5; }
     .score-table-header > div:nth-child(2) { text-align: center; }
     .score-table-header > div:nth-child(3) { text-align: center; }
-    .score-table-header > div:last-child { text-align: right; }
+    .score-table-header > div:last-child { text-align: right; flex: 1.5; justify-content: flex-end; }
 
     .score-table-row {
       display: flex;
@@ -188,8 +189,8 @@
     .score-table-row:hover { background: #fafafa; }
 
     .subject-info { display: flex; flex-direction: column; gap: 3px; }
-    .subject-name { font-size: 16px; font-weight: 600; }
-    .subject-detail { font-size: 12px; color: var(--text-secondary); }
+    .subject-name { font-size: 20px; font-weight: 600; }
+    .subject-detail { font-size: 14px; color: var(--text-secondary); }
 
     .max-score {
       font-size: 14px;
@@ -214,9 +215,9 @@
     .input-cell { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
 
     .score-input {
-      width: 96px;
-      padding: 12px 10px;
-      font-size: 20px;
+      width: 110px;
+      padding: 14px 12px;
+      font-size: 24px;
       font-weight: 600;
       border: 2px solid var(--border);
       border-radius: 10px;
@@ -232,7 +233,7 @@
     .score-input.over { border-color: var(--tier4); background: #fff5f5; }
 
     .input-max {
-      font-size: 12px;
+      font-size: 14px;
       color: var(--text-secondary);
       white-space: nowrap;
     }
@@ -320,19 +321,19 @@
 
     .schools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
     }
 
     .school-item {
-      padding: 16px;
+      padding: 20px 18px;
       border-radius: 10px;
       border: 1px solid var(--border);
       text-align: center;
     }
 
-    .school-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-    .school-note { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+    .school-name { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+    .school-note { font-size: 14px; color: var(--text-secondary); margin-top: 3px; }
 
     .schools-note {
       margin-top: 24px;
