@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { width: 100%; overflow-x: hidden; }
 
     :root {
       --bg: #fafafa;
@@ -23,6 +24,9 @@
       --tier4: #ff3b30;
       --radius: 12px;
       --shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --section-x: 20px;
+      --content-wide: 1000px;
+      --content-mid: 760px;
     }
 
     body {
@@ -32,12 +36,13 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      min-width: 0;
     }
 
     /* Hero */
     .hero {
       background: linear-gradient(180deg, #f0f0f5 0%, #fafafa 100%);
-      padding: 80px 20px 60px;
+      padding: 72px var(--section-x) 56px;
       text-align: center;
     }
 
@@ -53,10 +58,12 @@
     }
 
     .hero h1 {
-      font-size: 68px;
+      max-width: 960px;
+      margin: 0 auto 18px;
+      font-size: 56px;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
+      line-height: 1.12;
+      letter-spacing: 0;
       background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -64,12 +71,12 @@
     }
 
     .hero p {
-      font-size: 26px;
+      font-size: 22px;
       color: var(--text-secondary);
       font-weight: 400;
       max-width: 700px;
       margin: 0 auto;
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     .policy-ref {
@@ -84,16 +91,17 @@
 
     /* Total */
     .total-section {
-      max-width: 720px;
-      margin: -40px auto 48px;
-      padding: 0 20px;
+      max-width: var(--content-mid);
+      width: 100%;
+      margin: -32px auto 44px;
+      padding: 0 var(--section-x);
     }
 
     .total-card {
       background: var(--card-bg);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 48px;
+      padding: 42px 44px;
       text-align: center;
     }
 
@@ -106,7 +114,7 @@
     }
 
     .total-score {
-      font-size: 96px;
+      font-size: 88px;
       font-weight: 700;
       color: var(--accent);
       line-height: 1;
@@ -133,9 +141,10 @@
       font-size: 17px;
       font-weight: 500;
       border-radius: 24px;
+      min-height: 52px;
       cursor: pointer;
       transition: all 0.3s ease;
-      letter-spacing: -0.01em;
+      letter-spacing: 0;
     }
 
     .predict-btn:hover { background: var(--accent-hover); transform: scale(1.02); }
@@ -143,9 +152,10 @@
 
     /* Score Table */
     .score-table {
-      max-width: 960px;
+      max-width: var(--content-wide);
+      width: 100%;
       margin: 0 auto 48px;
-      padding: 0 20px;
+      padding: 0 var(--section-x);
     }
 
     .score-table-card {
@@ -158,7 +168,7 @@
 
     .score-table-header {
       display: grid;
-      grid-template-columns: minmax(220px, 2.4fr) minmax(80px, 0.75fr) minmax(150px, 1.15fr) minmax(128px, 1fr);
+      grid-template-columns: minmax(240px, 2.4fr) minmax(82px, 0.75fr) minmax(150px, 1.15fr) minmax(128px, 1fr);
       gap: 18px;
       padding: 18px 28px;
       background: #f7f8fb;
@@ -179,7 +189,7 @@
 
     .score-table-row {
       display: grid;
-      grid-template-columns: minmax(220px, 2.4fr) minmax(80px, 0.75fr) minmax(150px, 1.15fr) minmax(128px, 1fr);
+      grid-template-columns: minmax(240px, 2.4fr) minmax(82px, 0.75fr) minmax(150px, 1.15fr) minmax(128px, 1fr);
       gap: 18px;
       padding: 18px 28px;
       border-top: 1px solid #ececf1;
@@ -293,9 +303,10 @@
 
     /* Note */
     .table-note {
-      max-width: 900px;
+      max-width: var(--content-wide);
+      width: 100%;
       margin: 0 auto 16px;
-      padding: 0 20px;
+      padding: 0 var(--section-x);
       display: flex;
       gap: 12px;
     }
@@ -328,9 +339,10 @@
 
     /* Result */
     .result-section {
-      max-width: 900px;
+      max-width: var(--content-wide);
+      width: 100%;
       margin: 0 auto 80px;
-      padding: 0 20px;
+      padding: 0 var(--section-x);
       display: none;
     }
 
@@ -400,9 +412,10 @@
 
     /* Save */
     .save-section {
-      max-width: 720px;
+      max-width: var(--content-mid);
+      width: 100%;
       margin: 0 auto 80px;
-      padding: 0 20px;
+      padding: 0 var(--section-x);
     }
 
     .save-card {
@@ -431,6 +444,7 @@
       font-size: 15px;
       font-weight: 500;
       border-radius: 24px;
+      min-height: 44px;
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -445,6 +459,7 @@
       font-size: 15px;
       font-weight: 500;
       border-radius: 24px;
+      min-height: 44px;
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -550,6 +565,190 @@
     @media (max-width: 360px) {
       .hero h1 { font-size: 26px; }
       .score-table-row > *:nth-child(3) { margin-left: 56px; }
+      .score-input-wrap { max-width: 150px; }
+    }
+
+    @media (max-width: 900px) {
+      :root { --section-x: 18px; }
+      .hero { padding-top: 60px; padding-bottom: 48px; }
+      .hero h1 { font-size: 44px; line-height: 1.14; }
+      .hero p { font-size: 19px; max-width: 620px; }
+      .total-section { margin-bottom: 40px; }
+      .total-card { padding: 36px 30px; }
+      .total-score { font-size: 76px; }
+      .total-score .unit { font-size: 28px; }
+
+      .score-table-header {
+        display: grid;
+        grid-template-columns: minmax(220px, 1.7fr) minmax(72px, 0.6fr) minmax(118px, 0.9fr) minmax(118px, 0.9fr);
+        gap: 12px;
+        padding: 16px 22px;
+      }
+      .score-table-row {
+        display: grid;
+        grid-template-columns: minmax(220px, 1.7fr) minmax(72px, 0.6fr) minmax(118px, 0.9fr) minmax(118px, 0.9fr);
+        gap: 12px;
+        padding: 17px 22px;
+      }
+      .subject-name { font-size: 17px; }
+      .score-input-wrap { width: 112px; }
+    }
+
+    @media (max-width: 760px) {
+      .hero h1 { font-size: 38px; max-width: 12em; }
+      .hero p { font-size: 17px; }
+      .policy-ref { font-size: 12px; }
+
+      .score-table-header { display: none; }
+      .score-table-card { border-radius: 14px; }
+      .score-table-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "subject input"
+          "meta input";
+        gap: 10px 14px;
+        padding: 18px;
+      }
+      .score-table-row > *:nth-child(1) { grid-area: subject; }
+      .score-table-row > *:nth-child(2) {
+        grid-area: meta;
+        justify-content: flex-start;
+      }
+      .score-table-row > *:nth-child(3) {
+        grid-area: meta;
+        justify-content: flex-start;
+        margin-left: 62px;
+      }
+      .score-table-row > *:last-child { grid-area: input; align-self: center; }
+      .max-score { font-size: 13px; }
+      .type-badge { min-width: 0; font-size: 11px; padding: 4px 9px; }
+      .score-input-wrap { width: 106px; height: 44px; }
+      .score-input { width: 56px; font-size: 19px; }
+
+      .table-note { flex-direction: column; }
+      .note-card { padding: 18px 20px; }
+      .result-card { padding: 30px 28px; }
+      .result-header { align-items: flex-start; gap: 14px; }
+      .result-title { font-size: 21px; }
+      .schools-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .save-card { flex-direction: column; align-items: flex-start; padding: 26px 28px; }
+      .btn-group { width: 100%; }
+      .btn-secondary, .btn-primary { flex: 1; text-align: center; }
+    }
+
+    @media (max-width: 520px) {
+      :root { --section-x: 16px; --radius: 10px; }
+      .hero {
+        padding-top: 46px;
+        padding-bottom: 34px;
+      }
+      .hero .year-badge {
+        font-size: 13px;
+        padding: 5px 14px;
+        margin-bottom: 16px;
+      }
+      .hero h1 {
+        max-width: 9em;
+        font-size: 30px;
+        line-height: 1.22;
+        margin-bottom: 14px;
+      }
+      .hero p {
+        max-width: 19em;
+        font-size: 15px;
+        line-height: 1.55;
+      }
+      .policy-ref {
+        margin-top: 12px;
+        padding: 5px 12px;
+        max-width: 100%;
+      }
+
+      .total-section { margin: -22px auto 34px; }
+      .total-card {
+        padding: 28px 20px;
+        overflow: hidden;
+      }
+      .total-label { font-size: 13px; margin-bottom: 10px; }
+      .total-score { font-size: 58px; }
+      .total-score .unit { font-size: 22px; }
+      .total-max { font-size: 14px; }
+      .score-bar-wrap { margin-top: 14px; }
+      .predict-btn {
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        margin-top: 26px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 14px 18px;
+        font-size: 16px;
+      }
+
+      .score-table { margin-bottom: 34px; }
+      .score-table-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "subject"
+          "meta"
+          "input";
+        gap: 9px;
+        padding: 16px 14px;
+      }
+      .score-table-row > *:last-child {
+        justify-content: flex-start;
+        width: 100%;
+      }
+      .score-table-row > *:nth-child(3) { margin-left: 56px; }
+      .subject-name { font-size: 16px; }
+      .subject-detail { font-size: 12px; line-height: 1.45; }
+      .score-input-wrap {
+        width: 100%;
+        max-width: 160px;
+        height: 42px;
+      }
+      .score-input {
+        flex: 1;
+        width: auto;
+        font-size: 18px;
+        padding-left: 8px;
+      }
+      .score-input-wrap .input-max { font-size: 12px; padding-right: 8px; }
+
+      .note-card { padding: 16px 18px; }
+      .note-card h4 { font-size: 12px; }
+      .note-card p, .note-card li { font-size: 13px; }
+      .result-section { margin-bottom: 54px; }
+      .result-card { padding: 22px 18px; }
+      .result-header { flex-direction: column; margin-bottom: 22px; }
+      .result-tier-badge { font-size: 15px; padding: 8px 16px; }
+      .result-title { font-size: 18px; }
+      .result-desc { font-size: 13px; }
+      .schools-grid { grid-template-columns: 1fr; }
+      .schools-grid > div > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+      }
+      .schools-note { font-size: 12px; padding: 14px; }
+      .save-section { margin-bottom: 50px; }
+      .save-card { padding: 22px 18px; }
+      .save-info h3 { font-size: 16px; }
+      .save-info p { font-size: 13px; }
+      .btn-group { flex-direction: column; gap: 10px; }
+      .btn-secondary, .btn-primary { width: 100%; }
+      .footer { padding: 30px 16px; font-size: 12px; }
+      .toast {
+        width: calc(100% - 32px);
+        bottom: 18px;
+        text-align: center;
+        font-size: 14px;
+        padding: 12px 18px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero h1 { font-size: 27px; }
+      .total-score { font-size: 52px; }
+      .score-table-row > *:nth-child(3) { margin-left: 54px; }
       .score-input-wrap { max-width: 150px; }
     }
   </style>
