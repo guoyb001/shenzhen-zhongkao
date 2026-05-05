@@ -31,6 +31,7 @@
       color: var(--text-primary);
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* Hero */
@@ -59,6 +60,7 @@
       background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      overflow-wrap: anywhere;
     }
 
     .hero p {
@@ -141,7 +143,7 @@
 
     /* Score Table */
     .score-table {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto 48px;
       padding: 0 20px;
     }
@@ -151,13 +153,16 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
+      border: 1px solid rgba(210, 210, 215, 0.72);
     }
 
     .score-table-header {
-      display: flex;
-      padding: 0 20px;
-      background: #f5f5f7;
-      font-size: 16px;
+      display: grid;
+      grid-template-columns: minmax(220px, 2.4fr) minmax(80px, 0.75fr) minmax(150px, 1.15fr) minmax(128px, 1fr);
+      gap: 18px;
+      padding: 18px 28px;
+      background: #f7f8fb;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text-secondary);
       letter-spacing: 0;
@@ -165,47 +170,47 @@
     }
 
     .score-table-header > div { 
-      padding: 14px 8px;
-      flex: 1;
       display: flex;
       align-items: center;
     }
-    .score-table-header > div:nth-child(1) { flex: 3; justify-content: flex-start; }
-    .score-table-header > div:nth-child(2) { flex: 1; justify-content: flex-end; }
-    .score-table-header > div:nth-child(3) { flex: 1.8; justify-content: flex-end; }
+    .score-table-header > div:nth-child(2),
+    .score-table-header > div:nth-child(4) { justify-content: flex-end; }
+    .score-table-header > div:nth-child(3) { justify-content: center; }
 
     .score-table-row {
-      display: flex;
-      padding: 0 20px;
-      border-top: 1px solid #f0f0f5;
+      display: grid;
+      grid-template-columns: minmax(220px, 2.4fr) minmax(80px, 0.75fr) minmax(150px, 1.15fr) minmax(128px, 1fr);
+      gap: 18px;
+      padding: 18px 28px;
+      border-top: 1px solid #ececf1;
       align-items: center;
-      transition: background 0.2s;
+      transition: background 0.2s, box-shadow 0.2s;
     }
 
     .score-table-row > * { 
-      padding: 14px 8px;
-      flex: 1;
       display: flex;
       align-items: center;
     }
-    .score-table-row > *:nth-child(1) { flex: 3; justify-content: flex-start; }
-    .score-table-row > *:nth-child(2) { flex: 1; justify-content: center; }
-    .score-table-row > *:last-child { flex: 1.8; justify-content: flex-end; }
+    .score-table-row > *:nth-child(2),
+    .score-table-row > *:last-child { justify-content: flex-end; }
+    .score-table-row > *:nth-child(3) { justify-content: center; }
 
-    .score-table-row:hover { background: #fafafa; }
+    .score-table-row:hover { background: #fbfcff; }
 
     .subject-info { 
       display: flex; 
       flex-direction: column; 
       justify-content: center;
-      gap: 2px;
+      align-items: flex-start;
+      gap: 4px;
     }
-    .subject-name { font-size: 18px; font-weight: 600; }
+    .subject-name { font-size: 18px; font-weight: 700; }
     .subject-detail { font-size: 13px; color: var(--text-secondary); }
 
     .max-score {
-      font-size: 14px;
-      color: var(--text-secondary);
+      font-size: 15px;
+      color: #5f6673;
+      font-weight: 600;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -213,11 +218,13 @@
     }
 
     .type-badge {
-      font-size: 11px;
-      color: white;
-      padding: 2px 8px;
-      border-radius: 8px;
-      font-weight: 500;
+      min-width: 72px;
+      text-align: center;
+      font-size: 12px;
+      color: #ffffff;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-weight: 700;
       white-space: nowrap;
     }
     .badge-written { background: #007aff; }
@@ -234,26 +241,30 @@
     .score-input-wrap {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      background: #f5f5f7;
-      border: 2px solid transparent;
-      border-radius: 10px;
+      justify-content: center;
+      width: 118px;
+      height: 44px;
+      background: #f7f8fb;
+      border: 1px solid #dcdfe7;
+      border-radius: 12px;
       overflow: hidden;
       transition: all 0.2s;
       pointer-events: auto;
-      padding-right: 4px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.78);
     }
 
     .score-input-wrap:focus-within {
       border-color: var(--accent);
       background: white;
+      box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
     }
 
     .score-input {
-      width: 76px;
-      padding: 12px 4px;
-      font-size: 20px;
-      font-weight: 600;
+      width: 64px;
+      height: 100%;
+      padding: 0 2px 0 10px;
+      font-size: 19px;
+      font-weight: 700;
       border: none;
       outline: none;
       text-align: right;
@@ -270,7 +281,7 @@
     .score-input-wrap .input-max {
       font-size: 13px;
       color: var(--text-secondary);
-      padding-right: 8px;
+      padding: 0 10px 0 2px;
       background: transparent;
       white-space: nowrap;
       pointer-events: none;
@@ -470,20 +481,37 @@
       .total-card { padding: 36px 24px; }
 
       /* 表头：小屏幕隐藏考试方式，保留科目、满分、分数三列 */
-      .score-table-header > div:nth-child(3) { display: none; }
-      .score-table-header { padding: 14px 16px; font-size: 13px; }
-      .score-table-row { padding: 16px; }
-      .score-table-row > *:nth-child(3) { display: none; }
+      .score-table { padding: 0 16px; }
+      .score-table-header { display: none; }
+      .score-table-card { border-radius: 14px; }
+      .score-table-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "subject input"
+          "meta input";
+        gap: 10px 14px;
+        padding: 18px;
+      }
+      .score-table-row > *:nth-child(1) { grid-area: subject; }
+      .score-table-row > *:nth-child(2) {
+        grid-area: meta;
+        justify-content: flex-start;
+      }
+      .score-table-row > *:nth-child(3) {
+        grid-area: meta;
+        justify-content: flex-start;
+        margin-left: 64px;
+      }
+      .score-table-row > *:last-child { grid-area: input; align-self: center; }
+      .max-score { font-size: 13px; }
+      .type-badge { min-width: 0; font-size: 11px; padding: 4px 9px; }
 
-      .score-input-wrap {
-        width: 90px;
-      }
+      .score-input-wrap { width: 104px; }
       .score-input {
-        width: 90px;
-        font-size: 22px;
-        padding: 12px 8px;
+        width: 56px;
+        font-size: 20px;
       }
-      .score-input-wrap .input-max { display: none; }
+      .score-input-wrap .input-max { display: inline; }
 
       .schools-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .save-card { flex-direction: column; align-items: flex-start; }
@@ -492,19 +520,28 @@
     }
 
     @media (max-width: 480px) {
-      .hero h1 { font-size: 32px; }
+      .hero h1 { font-size: 30px; line-height: 1.18; }
       .hero p { font-size: 16px; }
       .hero { padding: 60px 16px 40px; }
       .total-score { font-size: 56px; }
       .total-card { padding: 28px 20px; }
       .predict-btn { padding: 14px 36px; font-size: 16px; }
 
-      .score-table-header { padding: 12px; font-size: 12px; }
-      .score-table-row { padding: 14px 12px; }
-      .subject-name { font-size: 17px; }
+      .score-table-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "subject"
+          "meta"
+          "input";
+        padding: 16px 14px;
+      }
+      .score-table-row > *:last-child { justify-content: flex-start; }
+      .subject-name { font-size: 16px; }
       .subject-detail { font-size: 12px; }
-      .score-input-wrap { width: 76px; }
-      .score-input { width: 76px; font-size: 20px; padding: 10px 6px; }
+      .score-table-row > *:nth-child(3) { margin-left: 56px; }
+      .score-input-wrap { width: 100%; max-width: 150px; height: 42px; }
+      .score-input { flex: 1; width: auto; font-size: 18px; padding-left: 8px; }
+      .score-input-wrap .input-max { font-size: 12px; padding-right: 8px; }
 
       .schools-grid { grid-template-columns: 1fr; }
       .result-card { padding: 24px 20px; }
@@ -512,10 +549,8 @@
 
     @media (max-width: 360px) {
       .hero h1 { font-size: 26px; }
-      .score-table-header > div:nth-child(2) { display: none; }
-      .score-table-row > *:nth-child(2) { display: none; }
-      .score-input-wrap { width: 64px; }
-      .score-input { width: 64px; font-size: 18px; }
+      .score-table-row > *:nth-child(3) { margin-left: 56px; }
+      .score-input-wrap { max-width: 150px; }
     }
   </style>
 </head>
@@ -563,7 +598,7 @@
       <div><span class="type-badge badge-written">笔试闭卷</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="chinese" value="108" min="0" max="120" placeholder="—" oninput="calcTotal(this, 120)">
+          <input class="score-input" type="number" id="chinese" value="108" min="0" max="120" placeholder="—" oninput="calcTotal(this, 120)">
           <span class="input-max">/120</span>
         </div>
       </div>
@@ -579,7 +614,7 @@
       <div><span class="type-badge badge-written">笔试闭卷</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="math" value="90" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
+          <input class="score-input" type="number" id="math" value="90" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
           <span class="input-max">/100</span>
         </div>
       </div>
@@ -595,7 +630,7 @@
       <div><span class="type-badge badge-written">笔试+听说</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="english" value="90" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
+          <input class="score-input" type="number" id="english" value="90" min="0" max="100" placeholder="—" oninput="calcTotal(this, 100)">
           <span class="input-max">/100</span>
         </div>
       </div>
@@ -611,7 +646,7 @@
       <div><span class="type-badge badge-written">笔试合场分卷</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="physics" value="63" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
+          <input class="score-input" type="number" id="physics" value="63" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
           <span class="input-max">/70</span>
         </div>
       </div>
@@ -627,7 +662,7 @@
       <div><span class="type-badge badge-written">笔试合场分卷</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="chemistry" value="45" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
+          <input class="score-input" type="number" id="chemistry" value="45" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
           <span class="input-max">/50</span>
         </div>
       </div>
@@ -643,7 +678,7 @@
       <div><span class="type-badge badge-written">笔试闭卷</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="history" value="63" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
+          <input class="score-input" type="number" id="history" value="63" min="0" max="70" placeholder="—" oninput="calcTotal(this, 70)">
           <span class="input-max">/70</span>
         </div>
       </div>
@@ -659,7 +694,7 @@
       <div><span class="type-badge badge-written">笔试开卷</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="politics" value="45" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
+          <input class="score-input" type="number" id="politics" value="45" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
           <span class="input-max">/50</span>
         </div>
       </div>
@@ -675,7 +710,7 @@
       <div><span class="type-badge badge-ope">实验操作</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="phy_exp" value="9" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
+          <input class="score-input" type="number" id="phy_exp" value="9" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
           <span class="input-max">/10</span>
         </div>
       </div>
@@ -691,7 +726,7 @@
       <div><span class="type-badge badge-ope">实验操作</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="chem_exp" value="9" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
+          <input class="score-input" type="number" id="chem_exp" value="9" min="0" max="10" placeholder="—" oninput="calcTotal(this, 10)">
           <span class="input-max">/10</span>
         </div>
       </div>
@@ -707,7 +742,7 @@
       <div><span class="type-badge badge-pe">实践考核</span></div>
       <div class="input-cell">
         <div class="score-input-wrap">
-          <input type="number" id="pe" value="45" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
+          <input class="score-input" type="number" id="pe" value="45" min="0" max="50" placeholder="—" oninput="calcTotal(this, 50)">
           <span class="input-max">/50</span>
         </div>
       </div>
