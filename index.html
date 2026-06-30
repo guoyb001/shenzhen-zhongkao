@@ -751,9 +751,69 @@
       .score-table-row > *:nth-child(3) { margin-left: 54px; }
       .score-input-wrap { max-width: 150px; }
     }
+
+    .site-nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: center;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .site-nav a {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #86868b;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .site-nav a:hover {
+      color: #1d1d1f;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .site-nav a.active {
+      background: #ffffff;
+      color: #0071e3;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    @media (max-width: 640px) {
+      .site-nav-wrap { padding: 10px 14px; }
+      .site-nav a { padding: 5px 9px; font-size: 12px; }
+    }
   </style>
 </head>
 <body>
+    <div class="site-nav-wrap">
+      <nav class="site-nav" aria-label="网站导航">
+      <a href="https://guoyb.cn/">时间地图</a>
+      <a href="https://snake.guoyb.cn/">贪吃蛇</a>
+      <a href="https://type.guoyb.cn/">打字练习</a>
+      <a href="https://zk.guoyb.cn/" class="active">深圳中考</a>
+      </nav>
+    </div>
+
 
 <!-- Hero -->
 <section class="hero">
